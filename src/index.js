@@ -1,18 +1,10 @@
 module.exports = function count(s, pairs) {
 
   const nod = (a,b) => {
-    if(!a||!b) {
-      return 0;
+    if(b === 0){
+      return a;
     }
-    if (a<b){
-      nod(b,a)
-    }
-    let r = a%b;
-    if(r){
-      return nod(b,r);
-    } else {
-      return b;
-    };
+    return nod(b,a%b);
   };
 
   let n = pairs.reduce((accum, curr, ind) => {
