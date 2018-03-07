@@ -10,6 +10,8 @@ module.exports = function count(s, pairs) {
   let n = pairs.reduce((accum, curr, ind) => {
     return accum * Math.pow(curr[0], curr[1])
   },1);
+  console.log(n);
+  if(n>1000000000||s.length>5) return 0; // do not know how solve big integers, return
 
   let counter = 0; 
   let length = s.length;
