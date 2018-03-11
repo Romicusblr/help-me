@@ -1,11 +1,11 @@
 module.exports = function count(s, pairs) {
 
-  const nod = (a,b) => {
-    if(b === 0){
-      return a;
-    }
-    return nod(b,a%b);
-  };
+  // const nod = (a,b) => {
+  //   if(b === 0){
+  //     return a;
+  //   }
+  //   return nod(b,a%b);
+  // };
 
   let n = pairs.reduce((accum, curr, ind) => {
     return accum * Math.pow(curr[0], curr[1])
@@ -20,13 +20,16 @@ module.exports = function count(s, pairs) {
     //make mask where 1 means nod === 1 , 0 means nod !== 1;
     for(j=0; j<length;j++){
       if(!k&&!j)break;
-      if(nod(n,k+j) === 1){
+     // if(nod(n,k+j) === 1){
+       if(pairs.every((elem, ind)=>{
+        return (k+j)%elem[0] !== 0;
+       })){
         mask+="1"
       } else {
         mask+="0"
       }
     }
-    if(!(mask^s)){
+    if(!(mask^s)&&mask!==''){
       counter++;
     }
   }
